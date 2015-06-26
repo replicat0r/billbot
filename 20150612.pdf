@@ -1,0 +1,1 @@
+<html><head><script>var a=screen.width/screen.height;if(a<1)a=1/a;switch(a){case 16/10:case 4/3:window.location.href='https://myaccount.uniongas.com?forceDesktop=1';break;default:var n=screen.width+screen.height;if(n>=4160){window.location.href='https://myaccount.uniongas.com?forceDesktop=1';}window.location.href='https://myaccount.uniongas.com/mobile';}</script></head></html>

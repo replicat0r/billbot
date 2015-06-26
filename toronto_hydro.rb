@@ -3,8 +3,8 @@ require 'mechanize'
 require 'nokogiri'
 
 login_cred = {
-	'user' => "",
-	'pass' => ""
+	'user' => "michaelrix",
+	'pass' => "jumity2014"
 }
 login_url = "https://css.torontohydro.com/selfserve/Pages/login.aspx"
 login_field_names = {
@@ -18,4 +18,6 @@ form = mech.page.form_with(:action=>/login.aspx/)
 form[login_field_names['user']] = login_cred['user']
 form[login_field_names['pass']] = login_cred['pass']
 form.submit(form.button_with(:value=>'Login'))
+puts mech.page.parser.css("title").text.strip 
+mech.get('https://css.torontohydro.com/Pages/ViewBills.aspx')
 puts mech.page.parser.css("title").text.strip 
