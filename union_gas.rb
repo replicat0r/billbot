@@ -27,7 +27,6 @@ File.open('file.html', 'w'){|f| f.puts mech.page.parser.to_html}
 bills = Nokogiri::HTML(open('file.html')) 
 bills.css('div.billHistoryLiteralContentCellColumn0LabelRegion a').each do |bill|
 	puts "https://myaccount.uniongas.com/#{bill['href']}"
-	agent = Mechanize.new
-	agent.pluggable_parser.default = Mechanize::Download
-	agent.get("https://myaccount.uniongas.com/#{bill['href']}").save("#{bill['href'][14..21]}.pdf")
+	mech.pluggable_parser.pdf = Mechanize::FileSaver
+	mech.get("https://myaccount.uniongas.com/#{bill['href']}")
 end
