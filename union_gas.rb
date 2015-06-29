@@ -4,7 +4,6 @@ require 'nokogiri'
 require 'logger'
 
 
-
 login_cred = {'user' => "j2mcorp",'pass' => "bridgeport13"}
 login_field_names = {'user' => 'loginFrameUserIDTextBox','pass' => 'loginFramePasswordTextBox'}
 
