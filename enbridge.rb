@@ -22,6 +22,10 @@ browser.text_field(name: login_field_names['user']).set login_cred['user']
 browser.text_field(name: login_field_names['pass']).set login_cred['pass']
 browser.link(id: 'ctl00_BodyContent_ctrlLogin1_login_lnkbtnLogin').click
 puts browser.title
+
+
+
+puts 'Account #: ' + browser.p(:class => 'extraLineHeight').text.split("\n")[0].strip
 puts "Balance: " + browser.tds(:class => 'summaryinfo')[1].text 
 puts "Due Date: " + browser.tds(:class => 'summaryinfo')[0].text
 
