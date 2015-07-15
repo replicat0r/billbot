@@ -27,13 +27,15 @@ if browser.h4(:text => /Welcome to myHOB Dashboard/).exists?  && browser.div(:te
   puts 'Due Date: ' + browser.tds(:css => 'td.hidden-xs')[3].text
 
   browser.goto('https://secure6.i-doxs.net/HydroOneBrampton/Secure/Bills.aspx')
-  # index = 0
-  # csv_data = "Amount Due,Due Date\n"
-  # browser.tds(:css => 'td.hidden-xs:nth-child(5)').each do |x|
-  #   csv_data = csv_data + x.text + "," + browser.tds(:css => 'td.hidden-xs:nth-child(6)')[index].text + "\n"
-  #   index = index+1;
-  # end
-  # puts csv_data
+  index = 0
+  data = []
+  browser.tds(:css => 'td.hidden-xs:nth-child(5)').each do |x|
+    amount = x.text
+    date = browser.tds(:css => 'td.hidden-xs:nth-child(6)')[index].text
+    data[index] = {:due_date_full => date, :amount => amount, :date_month => date}
+    index += 1;
+  end
+  puts data
   browser.close
   headless.destroy
   puts true

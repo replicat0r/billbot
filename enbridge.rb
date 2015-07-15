@@ -33,11 +33,20 @@ browser.a(:text => 'Payments').click
 browser.a(:text => 'Payment History').click
 browser.a(:text => 'SUBMIT').click
 Watir::Wait.until {browser.iframe.table(:id => "rgrdPaymentHistory_ctl00").exists?}
-csv_data = "Amount,Date\n"
-browser.iframe.table(:id => "rgrdPaymentHistory_ctl00").trs.each{|x|
-    csv_data = csv_data + x.tds[2].text + "," + x.tds[1].text + "\n"
-}
-puts csv_data
+data = []
+index = 0
+browser.iframe.table(:id => "rgrdPaymentHistory_ctl00").trs.each do |x|
+    amount = x.tds[2].text.strip
+    date_a = x.tds[1].text.strip.split('/')
+    # month = date[0]
+    # day = date[1]
+    # year = date[2]
+    date_month = date_a[2]+date_a[0]+date_a[1]
+
+    data[index] = {:due_date_full => date_month , :amount => amount, :date_month => date_month}
+    index+=1
+end
+puts data
 browser.close
 headless.destroy
 
